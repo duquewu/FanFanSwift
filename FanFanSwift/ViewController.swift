@@ -148,7 +148,7 @@ class ViewController: UIViewController {
     func prepareBird()
     {
         var images :NSMutableArray = NSMutableArray()
-        for i in 1..7
+        for i in 1...7
         {
             var str = "bird\(i).png"
             var image = UIImage(named: str)
@@ -164,7 +164,7 @@ class ViewController: UIViewController {
     func prepareWinView()
     {
         var images:NSMutableArray! = NSMutableArray()
-        for i in 1..13
+        for i in 1...12
         {
             var image = UIImage(named:"congratulation\(i).png")
             images.addObject(image)
@@ -239,7 +239,7 @@ class ViewController: UIViewController {
                     self.doublePlayer.play()
                     self.tempImageView = nil
                     self.doubleCount++
-                    if(self.doubleCount == 1)
+                    if(self.doubleCount == 10)
                     {
                         self.gameWin()
                     }
