@@ -9,19 +9,20 @@
 import UIKit
 import AVFoundation
 class ViewController: UIViewController {
-    @IBOutlet var birdView : UIImageView
-    @IBOutlet var timeCountLabel : UILabel
-    @IBOutlet var congratulationView : UIImageView
-    var bgPlayer :AVAudioPlayer!
-    var clickPlayer :AVAudioPlayer!
-    var doublePlayer : AVAudioPlayer!
-    var timer : NSTimer!
-    var doubleCount :Int = 0
-    var isGameOver :Bool = false
-    var tempImageView :MyImageView!
+    @IBOutlet var birdView : UIImageView //鸵鸟
+    @IBOutlet var timeCountLabel : UILabel//倒计时
+    @IBOutlet var congratulationView : UIImageView//胜利动画
+    var bgPlayer :AVAudioPlayer!//背景音乐
+    var clickPlayer :AVAudioPlayer!//点击音效
+    var doublePlayer : AVAudioPlayer!//成对儿音效
+    var timer : NSTimer!//定时器
+    var doubleCount :Int = 0//匹配对数
+    var isGameOver :Bool = false//游戏结束
+    var tempImageView :MyImageView!// 临时对象,记录第一次点击的水果
     
     @IBAction func doMusic(sender : UIButton)
     {
+        //音乐开关
         if (self.bgPlayer.playing)
         {
             self.bgPlayer.stop()
@@ -33,11 +34,12 @@ class ViewController: UIViewController {
             sender.setImage(UIImage(named:"soundOpen"), forState: .Normal)
         }
     }
-    
+    //刷新按钮
     @IBAction func doRefresh(sender : UIButton?)
     {
         self.bgPlayer.play()
-//        self.timeCountLabel.text = "60"
+        
+        self.timeCountLabel.text = "60"
         self.doubleCount = 0
         self.birdView.startAnimating()
         self.tempImageView = nil
@@ -51,8 +53,9 @@ class ViewController: UIViewController {
         self.turnAll2Left()
         self.congratulationView.hidden=true
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2 * Int64(NSEC_PER_SEC)), dispatch_get_main_queue(), {
-                self.turnAll2Right()
+            self.turnAll2Right()
             })
+        
     }
     func loadFruits()
     {
@@ -166,7 +169,7 @@ class ViewController: UIViewController {
             var image = UIImage(named:"congratulation\(i).png")
             images.addObject(image)
         }
-
+        
         self.congratulationView.animationImages = images
         self.congratulationView.animationDuration = 3
         self.congratulationView.startAnimating()
@@ -188,23 +191,27 @@ class ViewController: UIViewController {
     }
     func gameOver()
     {
+        self.isGameOver = true
         self.birdView.stopAnimating()
         self.timer.invalidate()
-        var alert : UIAlertController! = UIAlertController(title: "title", message: "message", preferredStyle: .Alert)
-        var alertAction :UIAlertAction = UIAlertAction(title:"OK",
+        var alert : UIAlertController! = UIAlertController(title: " Oh! No~````", message: "竟然失败了~`!", preferredStyle: .Alert)
+        var alertAction :UIAlertAction = UIAlertAction(title:"再来一次",
             style:.Default,{
-            (UIAlertAction)->Void in
-                println("test")
+                (UIAlertAction)->Void in
+                self.doRefresh(nil)
             })
+        alert.addAction(alertAction)
         self.presentViewController(alert,animated: true,nil)
         
     }
     func gameWin()
     {
+        self.isGameOver = true
         self.birdView.stopAnimating()
         self.congratulationView.hidden = false
         self.timer.invalidate()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareMusic()
