@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         var tags = randomTags()
         var images = randomImages()
         var index = 0
-        for (var i = 0 ;i<10;i++)
+        for i in 0..10
         {
             //取出一张图片
             var image:UIImage = images[i] as UIImage
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     func turnAll2Left()
     {
         println("turnAll2Left")
-        for (var i = 100;i<120;i++)
+        for i in 100..120
         {
             var myI  = self.view.viewWithTag(i) as MyImageView
             myI.turn2Left()
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     func turnAll2Right()
     {
         println("turnAll2Right")
-        for (var i = 100;i<120;i++)
+        for i in 100..120
         {
             var myI  = self.view.viewWithTag(i) as MyImageView
             myI.turn2Right()
@@ -148,7 +148,7 @@ class ViewController: UIViewController {
     func prepareBird()
     {
         var images :NSMutableArray = NSMutableArray()
-        for(var i = 1;i<=7;i++)
+        for i in 1..7
         {
             var str = "bird\(i).png"
             var image = UIImage(named: str)
@@ -164,7 +164,7 @@ class ViewController: UIViewController {
     func prepareWinView()
     {
         var images:NSMutableArray! = NSMutableArray()
-        for (var i = 1 ; i <= 12 ;i++)
+        for i in 1..13
         {
             var image = UIImage(named:"congratulation\(i).png")
             images.addObject(image)
@@ -239,7 +239,7 @@ class ViewController: UIViewController {
                     self.doublePlayer.play()
                     self.tempImageView = nil
                     self.doubleCount++
-                    if(self.doubleCount == 10)
+                    if(self.doubleCount == 1)
                     {
                         self.gameWin()
                     }
