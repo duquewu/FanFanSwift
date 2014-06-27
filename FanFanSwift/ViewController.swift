@@ -194,14 +194,14 @@ class ViewController: UIViewController {
         self.isGameOver = true
         self.birdView.stopAnimating()
         self.timer.invalidate()
-        var alert : UIAlertController! = UIAlertController(title: " Oh! No~````", message: "竟然失败了~`!", preferredStyle: .Alert)
-        var alertAction :UIAlertAction = UIAlertAction(title:"再来一次",
-            style:.Default,{
-                (UIAlertAction)->Void in
-                self.doRefresh(nil)
-            })
-        alert.addAction(alertAction)
-        self.presentViewController(alert,animated: true,nil)
+//        var alert : UIAlertController! = UIAlertController(title: " Oh! No~````", message: "竟然失败了~`!", preferredStyle: .Alert)
+//        var alertAction :UIAlertAction = UIAlertAction(title:"再来一次",
+//            style:.Default,{
+//                (UIAlertAction)->Void in
+//                self.doRefresh(nil)
+//            })
+//        alert.addAction(alertAction)
+//        self.presentViewController(alert,animated: true,nil)
         
     }
     func gameWin()
