@@ -13,7 +13,7 @@ class MyImageView: UIImageView {
     var myImage : UIImage?
     var myTag : NSInteger?
 
-    init(coder aDecoder: NSCoder!)
+    required init(coder aDecoder: NSCoder!)
     {
         super.init(coder :aDecoder)
         self.userInteractionEnabled = true
