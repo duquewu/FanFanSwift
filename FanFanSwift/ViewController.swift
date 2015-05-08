@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 class ViewController: UIViewController {
-    @IBOutlet var birdView : UIImageView //鸵鸟
-    @IBOutlet var timeCountLabel : UILabel//倒计时
-    @IBOutlet var congratulationView : UIImageView//胜利动画
+    @IBOutlet var birdView : UIImageView? //鸵鸟
+    @IBOutlet var timeCountLabel : UILabel?//倒计时
+    @IBOutlet var congratulationView : UIImageView?//胜利动画
     var bgPlayer :AVAudioPlayer!//背景音乐
     var clickPlayer :AVAudioPlayer!//点击音效
     var doublePlayer : AVAudioPlayer!//成对儿音效
@@ -39,19 +39,19 @@ class ViewController: UIViewController {
     {
         self.bgPlayer.play()
         
-        self.timeCountLabel.text = "60"
+        self.timeCountLabel!.text = "60"
         self.doubleCount = 0
-        self.birdView.startAnimating()
+        self.birdView!.startAnimating()
         self.tempImageView = nil
         if(isGameOver || timer == nil)
         {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timeCount", userInfo: nil, repeats: true)
-            self.birdView.startAnimating()
+            self.birdView!.startAnimating()
             self.isGameOver = false
         }
         self.loadFruits()
         self.turnAll2Left()
-        self.congratulationView.hidden=true
+        self.congratulationView!.hidden=true
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2 * Int64(NSEC_PER_SEC)), dispatch_get_main_queue(), {
             self.turnAll2Right()
             })
@@ -62,14 +62,14 @@ class ViewController: UIViewController {
         var tags = randomTags()
         var images = randomImages()
         var index = 0
-        for i in 0..10
+        for i in 0...9
         {
             //取出一张图片
-            var image:UIImage = images[i] as UIImage
+            var image:UIImage = images[i] as! UIImage
             //获取两个问号
-            var my1:MyImageView = self.view.viewWithTag( tags[index] as Int) as MyImageView
+            var my1:MyImageView = self.view.viewWithTag( tags[index] as! Int) as! MyImageView
             index++
-            var my2:MyImageView = self.view.viewWithTag( tags[index] as Int) as MyImageView
+            var my2:MyImageView = self.view.viewWithTag( tags[index] as! Int) as! MyImageView
             index++
             //设置相同的图片和标记
             my1.myImage = image
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         while(images.count < 10)
         {
             var i = arc4random()%18+1
-            var image:UIImage = UIImage(named: "fruit\(i).png")
+            var image:UIImage = UIImage(named: "fruit\(i).png")!
             if(!images.containsObject(image))
             {
                 images.addObject(image)
@@ -111,25 +111,25 @@ class ViewController: UIViewController {
     func turnAll2Left()
     {
         println("turnAll2Left")
-        for i in 100..120
+        for i in 100...119
         {
-            var myI  = self.view.viewWithTag(i) as MyImageView
+            var myI  = self.view.viewWithTag(i) as! MyImageView
             myI.turn2Left()
         }
     }
     func turnAll2Right()
     {
         println("turnAll2Right")
-        for i in 100..120
+        for i in 100...119
         {
-            var myI  = self.view.viewWithTag(i) as MyImageView
+            var myI  = self.view.viewWithTag(i) as! MyImageView
             myI.turn2Right()
         }
     }
     func loadMusicByName(name : String)->AVAudioPlayer
     {
         let path = NSBundle.mainBundle().pathForResource(name,ofType: "mp3")
-        let url = NSURL.fileURLWithPath(path)
+        let url = NSURL.fileURLWithPath(path!)
         var player = AVAudioPlayer(contentsOfURL: url,error: nil)
         player.prepareToPlay()
         player.volume = 0.9
@@ -152,10 +152,10 @@ class ViewController: UIViewController {
         {
             var str = "bird\(i).png"
             var image = UIImage(named: str)
-            images.addObject(image)
+            images.addObject(image!)
         }
-        self.birdView.animationImages = images
-        self.birdView.animationDuration = 1.2
+        self.birdView!.animationImages = images as [AnyObject]
+        self.birdView!.animationDuration = 1.2
     }
     func prepareTimeCount()
     {
@@ -167,17 +167,17 @@ class ViewController: UIViewController {
         for i in 1...12
         {
             var image = UIImage(named:"congratulation\(i).png")
-            images.addObject(image)
+            images.addObject(image!)
         }
         
-        self.congratulationView.animationImages = images
-        self.congratulationView.animationDuration = 3
-        self.congratulationView.startAnimating()
-        self.view.addSubview(self.congratulationView)
+        self.congratulationView!.animationImages = images as [AnyObject]
+        self.congratulationView!.animationDuration = 3
+        self.congratulationView!.startAnimating()
+        self.view.addSubview(self.congratulationView!)
     }
     func timeCount()
     {
-        var timeCount :Int = self.timeCountLabel.text.toInt()!
+        var timeCount :Int = self.timeCountLabel!.text!.toInt()!
         if(timeCount<=0)
         {
             self.timer.invalidate()
@@ -187,12 +187,12 @@ class ViewController: UIViewController {
         {
             timeCount--
         }
-        self.timeCountLabel.text = String(timeCount)
+        self.timeCountLabel!.text = String(timeCount)
     }
     func gameOver()
     {
         self.isGameOver = true
-        self.birdView.stopAnimating()
+        self.birdView!.stopAnimating()
         self.timer.invalidate()
 //        var alert : UIAlertController! = UIAlertController(title: " Oh! No~````", message: "竟然失败了~`!", preferredStyle: .Alert)
 //        var alertAction :UIAlertAction = UIAlertAction(title:"再来一次",
@@ -207,8 +207,8 @@ class ViewController: UIViewController {
     func gameWin()
     {
         self.isGameOver = true
-        self.birdView.stopAnimating()
-        self.congratulationView.hidden = false
+        self.birdView!.stopAnimating()
+        self.congratulationView!.hidden = false
         self.timer.invalidate()
     }
     
@@ -220,21 +220,21 @@ class ViewController: UIViewController {
         self.prepareWinView()
         self.doRefresh(nil)
     }
-    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!)
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent!)
     {
-        var touch :UITouch =  touches.anyObject() as UITouch
+        var touch :UITouch =  touches.first as! UITouch
         if(touch.view.isKindOfClass(MyImageView.self))
         {
-            var currentTouchView = touch.view as MyImageView
+            var currentTouchView = touch.view as! MyImageView
             currentTouchView.turn2Left()
             self.clickPlayer.play()
-            if (!self.tempImageView)
+            if (self.tempImageView == nil)
             {
                 self.tempImageView = currentTouchView
             }
             else
             {
-                if(currentTouchView.myTag == tempImageView.myTag)
+                if(currentTouchView.myTag == self.tempImageView.myTag)
                 {
                     self.doublePlayer.play()
                     self.tempImageView = nil
