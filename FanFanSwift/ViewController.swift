@@ -143,6 +143,7 @@ class ViewController: UIViewController {
     func prepareMusic()
     {
         self.bgPlayer = loadMusicByName(name: "bg")
+        self.bgPlayer.numberOfLoops = -1
         self.clickPlayer = loadMusicByName(name: "click")
         self.doublePlayer = loadMusicByName(name: "double")
         self.bgPlayer.prepareToPlay()
