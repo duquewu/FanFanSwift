@@ -86,7 +86,6 @@
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="doMusic:" destination="ZCp-AJ-dby" eventType="touchUpInside" id="dbD-3u-2Gj"/>
                                     <action selector="doMusicWithSender:" destination="ZCp-AJ-dby" eventType="touchUpInside" id="ayz-zH-1Ki"/>
                                 </connections>
                             </button>
@@ -97,7 +96,6 @@
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="doRefresh:" destination="ZCp-AJ-dby" eventType="touchUpInside" id="YsG-1d-Tu3"/>
                                     <action selector="doRefreshWithSender:" destination="ZCp-AJ-dby" eventType="touchUpInside" id="Xkd-Uo-aYl"/>
                                 </connections>
                             </button>
