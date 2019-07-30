@@ -183,8 +183,8 @@ class ViewController: UIViewController {
     }
     @objc func timeCount()
     {
-        var timeCount :Int = self.timeCountLabel.text!.count
-        if(timeCount<=0)
+        var timeCount = Int(self.timeCountLabel!.text!) ?? 0
+        if(timeCount <= 0 )
         {
             self.timer.invalidate()
             self.gameOver()
