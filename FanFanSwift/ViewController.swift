@@ -52,9 +52,9 @@ class ViewController: UIViewController {
         self.loadFruits()
         self.turnAll2Left()
         self.congratulationView.isHidden=true
-//        dispatch_after(dispatch_time(DispatchTime.now(),2 * Int64(NSEC_PER_SEC)), DispatchQueue.main, {
-//            self.turnAll2Right()
-//            })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.turnAll2Right()
+        }
         
     }
     func loadFruits()
