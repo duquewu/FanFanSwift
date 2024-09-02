@@ -19,6 +19,6 @@ Swift语言编写 ,用于语言学习之用
 
 ### 截图
 
-![](https://raw.githubusercontent.com/geek5nan/FanFanSwift/master/screenshot/1.png)
-![](https://raw.githubusercontent.com/geek5nan/FanFanSwift/master/screenshot/2.png)
-![](https://raw.githubusercontent.com/geek5nan/FanFanSwift/master/screenshot/3.png)
+![](https://raw.githubusercontent.com/duquewu/FanFanSwift/master/screenshot/1.png)
+![](https://raw.githubusercontent.com/duquewu/FanFanSwift/master/screenshot/2.png)
+![](https://raw.githubusercontent.com/duquewu/FanFanSwift/master/screenshot/3.png)
